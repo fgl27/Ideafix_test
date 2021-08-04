@@ -1,3 +1,5 @@
+/*eslint space-before-function-paren: ["error", { "anonymous": "ignore", "named": "ignore" }]*/
+
 import React, {Component} from "react";
 import {IoClose} from "react-icons/io5";
 
@@ -25,7 +27,7 @@ class Notas extends Component {
             .then(notas => this.setState({notas}));
     }
 
-    UpdateNotas = async (notas, clearStates) => {
+    UpdateNotas(notas, clearStates) {
         if (Array.isArray(notas)) {
             this.setState({
                 notas,
@@ -52,7 +54,7 @@ class Notas extends Component {
         })
             .then(res => res.json())
             .then(notas => this.UpdateNotas(notas, true))
-            .catch((error) => console.error("Error:", error));
+            .catch((error) => console.error("Addnote Error:", error));
 
     }
 
@@ -65,7 +67,7 @@ class Notas extends Component {
         })
             .then(res => res.json())
             .then(notas => this.UpdateNotas(notas))
-            .catch((error) => console.error("Error:", error));
+            .catch((error) => console.error("Deletenote Error:", error));
     }
 
 
@@ -106,7 +108,7 @@ class Notas extends Component {
                     </div>
                     <div >
                         <h1
-                            className="textCenter">Notas</h1>
+                            className="textCenter">Suas notas</h1>
                         <div className="notas_container">
                             {this.state.notas.map(nota => (
                                 <div
