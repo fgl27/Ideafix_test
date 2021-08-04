@@ -1,6 +1,7 @@
 //Inicializa as constantes do express
 const express = require('express');
 const router = express.Router();
+const cors = require('cors');
 
 //Inicializa as constantes do express
 const uuid = require('uuid');
@@ -12,16 +13,20 @@ const notas = objNotas.lista;
 //Inicializa o filtro ID para usar com some()
 const filtroID = req => notas => notas.id.toString() === req.params.id.toString();
 
+router.use(cors());
+
 //Habilita enviar JSON obj body
 router.use(express.json());
 
 // GET todas notas
-router.get('/', (req, res) => res.json(notas));
+router.get('/', cors(), (req, res) => res.json(notas));
 
 // POST cria uma notas
-router.post('/', (req, res) => {
+router.post('/', cors(), (req, res) => {
     //gera a ID da nova nota
     const id = uuid.v4();
+
+    console.log(req.body)
 
     //Cria o objeto
     const novaNota = {
@@ -40,7 +45,7 @@ router.post('/', (req, res) => {
 });
 
 // DELETE Nota
-router.delete('/:id', (req, res) => {
+router.delete('/:id', cors(), (req, res) => {
 
     //verifica se existe
     const existe = notas.some(filtroID(req));
