@@ -1,4 +1,4 @@
-# App ativiade de teste ideafix
+# App atividade de teste ideafix
 
 # Iniciando a API e o APP
 
@@ -31,3 +31,6 @@ npm start
 
 **O Server Express inicia no link http://localhost:5000 e o app no link http://localhost:3000**
 
+# O visual do aplicativo:
+
+![app](https://raw.githubusercontent.com/fgl27/Ideafix_test/master/app/public/Screenshot_from_2021-08-05_15-08-35.png)
