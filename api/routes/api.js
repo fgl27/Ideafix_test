@@ -1,7 +1,10 @@
 //Inicializa as constantes do express
 const express = require('express');
 const router = express.Router();
+
+//Habilita cors para evitar error de CORS do app
 const cors = require('cors');
+router.use(cors());
 
 //Inicializa as constantes do express
 const uuid = require('uuid');
@@ -14,8 +17,6 @@ const notas = objNotas.lista;
 const filtroID = req => notas =>
     notas.id.toString() === req.params.id.toString();
 
-router.use(cors());
-
 //Habilita enviar JSON obj body
 router.use(express.json());
 
@@ -26,8 +27,6 @@ router.get('/', cors(), (req, res) => res.json(notas));
 router.post('/', cors(), (req, res) => {
     //gera a ID da nova nota
     const id = uuid.v4();
-
-    console.log(req.body);
 
     //Cria o objeto
     const novaNota = {
