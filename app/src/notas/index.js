@@ -131,7 +131,9 @@ class Notas extends Component {
                                             <IoClose className="react-icons" />
                                         </button>
                                     </div>
-                                    <div key={nota.id + 'desc'}>
+                                    <div
+                                        key={nota.id + 'desc'}
+                                        className="nota_desc">
                                         {nota.desc}
                                     </div>
                                 </div>
