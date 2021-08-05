@@ -1,25 +1,33 @@
-# App ativiade de teste  ideafix
+# App ativiade de teste ideafix
 
 # Iniciando a API e o APP
 
+### Express API
 ``` bash
-# Express API
+# Navea para pasta api
 cd api
 
-# Instale dependências
+# Instala as dependências
 npm install
 
 # Inicia Express
 npm start
 
-# React APP
+```
+
+### React APP
+
+``` bash
+# Navea para pasta api
 cd app
 
-# Instale dependências
+# Instala as dependências
 npm install
 
 # Inicia o app
 npm start
 
-# O Server Express inicia no link http://localhost:5000 o app no link http://localhost:3000
 ```
+
+**O Server Express inicia no link http://localhost:5000 e o app no link http://localhost:3000**
+

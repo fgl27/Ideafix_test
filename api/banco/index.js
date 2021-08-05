@@ -1,8 +1,9 @@
 const fs = require('fs');
 
-//Inicializa o caminho do arquivo e o objeto
+//Inicializa o caminho do arquivo e o objeto data
 const PATH = './banco/notas.json';
-let data = JSON.parse(fs.readFileSync(PATH, {encoding: 'utf-8'}) || '[]');
+let data;
+get();
 
 //Inicializa o objeto notas
 const notas = {
@@ -11,7 +12,7 @@ const notas = {
     salva: salva,
 };
 
-//Função adiciona uma nota
+//Função get todas notas
 function get() {
     data = JSON.parse(fs.readFileSync(PATH, {encoding: 'utf-8'}) || '[]');
     return data;
