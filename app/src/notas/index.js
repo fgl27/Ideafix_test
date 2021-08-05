@@ -20,7 +20,8 @@ class Notas extends Component {
                 }
                 return res.json();
             })
-            .then(notas => this.setState({notas}));
+            .then(notas => this.setState({notas}))
+            .catch(error => console.error('componentDidMount Error:', error));
     }
 
     UpdateNotas(notas, clearStates) {
@@ -69,11 +70,11 @@ class Notas extends Component {
             .catch(error => console.error('DeletaNota Error:', error));
     };
 
-    UpdateTitulo = async env => {
+    AtualizaTitulo = async env => {
         this.setState({titulo: env.target.value});
     };
 
-    UpdateDesc = async env => {
+    AtualizaDesc = async env => {
         this.setState({desc: env.target.value});
     };
 
@@ -87,7 +88,8 @@ class Notas extends Component {
                         rel="noreferrer">
                         <img
                             className="logo"
-                            src="https://ideafix.com.br/wp-content/uploads/2020/12/Ideafix_Logo-RGB-01.png"></img>
+                            src="https://ideafix.com.br/wp-content/uploads/2020/12/Ideafix_Logo-RGB-01.png"
+                        />
                     </a>
                 </header>
                 <div className="container">
@@ -99,14 +101,14 @@ class Notas extends Component {
                             placeholder="Título"
                             ref={el => (this.inputTitle = el)}
                             value={this.state.title}
-                            onChange={this.UpdateTitulo}
+                            onChange={this.AtualizaTitulo}
                         />
                         <textarea
                             className="input inputDesc"
                             type="text"
                             placeholder="Descrição"
                             value={this.state.desc}
-                            onChange={this.UpdateDesc}
+                            onChange={this.AtualizaDesc}
                         />
                         <button className="button" onClick={this.AdicionaNota}>
                             <div className="button_text">Criar nota</div>
@@ -124,11 +126,15 @@ class Notas extends Component {
                                             {nota.titulo}
                                         </div>
                                         <button
+                                            key={nota.id + 'close_button'}
                                             className="nota_button"
                                             onClick={() =>
                                                 this.DeletaNota(nota.id)
                                             }>
-                                            <IoClose className="react-icons" />
+                                            <IoClose
+                                                key={nota.id + 'close_icon'}
+                                                className="react-icons"
+                                            />
                                         </button>
                                     </div>
                                     <div
