@@ -1,24 +1,28 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index",
-    "dev": "nodemon index",
-    "lint": "eslint ."
-  },
-  "author": "Felipe Leon",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.24.0",
-    "nodemon": "^2.0.12"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "prettier": "^2.3.2",
-    "uuid": "^8.3.2"
-  }
+    "name": "api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index",
+        "dev": "nodemon index",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+    },
+    "author": "Felipe Leon",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-react": "^7.24.0",
+        "nodemon": "^2.0.12"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "prettier": "^2.3.2",
+        "uuid": "^8.3.2"
+    }
 }

@@ -8,7 +8,7 @@ const data = JSON.parse(fs.readFileSync(PATH, {encoding: 'utf-8'}) || '[]');
 const notas = {
     lista: data,
     adiciona: adiciona,
-    salva: salva
+    salva: salva,
 };
 
 //Função adiciona uma nota
@@ -19,10 +19,7 @@ function adiciona(novaNota) {
 
 //Função salva notas, usada quando adiciona e remove notas
 function salva(data) {
-    fs.writeFileSync(
-        PATH,
-        JSON.stringify(data, null, 4)
-    );
+    fs.writeFileSync(PATH, JSON.stringify(data, null, 4));
 }
 
 module.exports = notas;
