@@ -10,8 +10,7 @@ router.use(cors());
 const uuid = require('uuid');
 
 //Inicializa o obj notas
-const objNotas = require('../notas/index');
-const notas = objNotas.lista;
+const banco = require('../banco/index');
 
 //Inicializa o filtro ID para usar com some()
 const filtroID = req => notas =>
@@ -21,7 +20,7 @@ const filtroID = req => notas =>
 router.use(express.json());
 
 // GET todas notas
-router.get('/', cors(), (req, res) => res.json(notas));
+router.get('/', cors(), (req, res) => res.json(banco.get()));
 
 // POST cria uma notas
 router.post('/', cors(), (req, res) => {
@@ -42,20 +41,22 @@ router.post('/', cors(), (req, res) => {
     }
 
     //Salva e retorna o objeto
-    objNotas.adiciona(novaNota);
-    res.json(notas);
+    banco.adiciona(novaNota);
+    res.json(banco.get());
 });
 
 // DELETE Nota
 router.delete('/:id', cors(), (req, res) => {
+    const notas = banco.get();
+
     //verifica se existe
     const existe = notas.some(filtroID(req));
 
     //caso sim salva e retorna o obj
     if (existe) {
-        const notasSalva = notas.filter(nota => !filtroID(req)(nota));
-        objNotas.salva(notasSalva);
-        res.json(notasSalva);
+        const notasFiltrada = notas.filter(nota => !filtroID(req)(nota));
+        banco.salva(notasFiltrada);
+        res.json(notasFiltrada);
     } else {
         return res
             .status(400)

@@ -1,15 +1,21 @@
 const fs = require('fs');
 
 //Inicializa o caminho do arquivo e o objeto
-const PATH = './notas/notas.json';
-const data = JSON.parse(fs.readFileSync(PATH, {encoding: 'utf-8'}) || '[]');
+const PATH = './banco/notas.json';
+let data = JSON.parse(fs.readFileSync(PATH, {encoding: 'utf-8'}) || '[]');
 
 //Inicializa o objeto notas
 const notas = {
-    lista: data,
+    get: get,
     adiciona: adiciona,
     salva: salva,
 };
+
+//Função adiciona uma nota
+function get() {
+    data = JSON.parse(fs.readFileSync(PATH, {encoding: 'utf-8'}) || '[]');
+    return data;
+}
 
 //Função adiciona uma nota
 function adiciona(novaNota) {
@@ -18,7 +24,8 @@ function adiciona(novaNota) {
 }
 
 //Função salva notas, usada quando adiciona e remove notas
-function salva(data) {
+function salva(updatedata) {
+    data = updatedata;
     fs.writeFileSync(PATH, JSON.stringify(data, null, 4));
 }
 
