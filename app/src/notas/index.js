@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {IoClose} from 'react-icons/io5';
 
 class Notas extends Component {
+    //Inicializa as variaveis de estado
     constructor() {
         super();
         this.state = {
@@ -12,6 +13,7 @@ class Notas extends Component {
         this.inputTitle = React.createRef();
     }
 
+    //Carrega as notas da API quando o componente é iniciado
     componentDidMount() {
         fetch('http://localhost:5000')
             .then(res => {
@@ -24,7 +26,8 @@ class Notas extends Component {
             .catch(error => console.error('componentDidMount Error:', error));
     }
 
-    UpdateNotas(notas, clearStates) {
+    //Função usada pra atualizar as notas quando alguma é adicionada ou deletada
+    UpdateNotas = async (notas, clearStates) => {
         if (Array.isArray(notas)) {
             this.setState(
                 {
@@ -41,8 +44,9 @@ class Notas extends Component {
             console.log(msg);
             alert(msg);
         }
-    }
+    };
 
+    //Função adiciona nota
     AdicionaNota = async () => {
         fetch('http://localhost:5000', {
             method: 'POST',
@@ -58,6 +62,7 @@ class Notas extends Component {
             .catch(error => console.error('AdicionaNota Error:', error));
     };
 
+    //Função deleta nota
     DeletaNota = async id => {
         fetch('http://localhost:5000/' + id, {
             method: 'DELETE',
@@ -70,14 +75,12 @@ class Notas extends Component {
             .catch(error => console.error('DeletaNota Error:', error));
     };
 
-    AtualizaTitulo = async env => {
-        this.setState({titulo: env.target.value});
+    //Função para atualizar o state título e descrição
+    AtualizaState = async env => {
+        this.setState({[env.target.name]: env.target.value});
     };
 
-    AtualizaDesc = async env => {
-        this.setState({desc: env.target.value});
-    };
-
+    //Reader que contem os elementos do APP
     render() {
         return (
             <div>
@@ -101,14 +104,16 @@ class Notas extends Component {
                             placeholder="Título"
                             ref={el => (this.inputTitle = el)}
                             value={this.state.title}
-                            onChange={this.AtualizaTitulo}
+                            name="titulo"
+                            onChange={this.AtualizaState}
                         />
                         <textarea
                             className="input inputDesc"
                             type="text"
                             placeholder="Descrição"
                             value={this.state.desc}
-                            onChange={this.AtualizaDesc}
+                            name="desc"
+                            onChange={this.AtualizaState}
                         />
                         <button className="button" onClick={this.AdicionaNota}>
                             <div className="button_text">Criar nota</div>
