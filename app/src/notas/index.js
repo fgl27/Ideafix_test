@@ -82,7 +82,14 @@ class Notas extends Component {
     render() {
         return (
             <div >
-                <header >Ideafix Notas</header>
+                <header >
+                    <a href="https://ideafix.com.br/" target="_blank" rel="noreferrer">
+                        <img
+                            className="logo"
+                            src="https://ideafix.com.br/wp-content/uploads/2020/12/Ideafix_Logo-RGB-01.png">
+                        </img>
+                    </a>
+                </header>
                 <div className="container">
                     <div className="input_container">
                         <h2 className="textCenter">Bloco de notas</h2>
@@ -103,8 +110,8 @@ class Notas extends Component {
                         />
                         <button
                             className="button"
-                            onClick={this.Addnote}
-                        >Criar nota</button>
+                            onClick={this.Addnote}>
+                            <div className="button_text">Criar nota</div></button>
                     </div>
                     <div >
                         <h1
@@ -126,8 +133,7 @@ class Notas extends Component {
                                         ><IoClose className="react-icons" /></button>
                                     </div>
                                     <div
-                                        key={nota.id + "desc"}
-                                        className="nota_desc">{nota.desc}</div>
+                                        key={nota.id + "desc"}>{nota.desc}</div>
                                 </div>
                             ))}
                         </div>
