@@ -8,21 +8,21 @@ export function Lista(value) {
             <h1 className="textCenter">Suas notas</h1>
             <div className="notas_container">
                 {value.notas.map(nota => (
-                    <div key={nota.id} className="nota">
-                        <div key={nota.id + 'titulo'} className="nota_titulo">
+                    <div key={nota._id} className="nota">
+                        <div key={nota._id + 'titulo'} className="nota_titulo">
                             {nota.titulo}
                         </div>
                         <button
-                            key={nota.id + 'close_button'}
+                            key={nota._id + 'close_button'}
                             className="nota_button"
-                            name={nota.id}
-                            onClick={() => value.DeletaNota(nota.id)}>
+                            name={nota._id}
+                            onClick={() => value.DeletaNota(nota._id)}>
                             <IoClose
-                                key={nota.id + 'close_icon'}
+                                key={nota._id + 'close_icon'}
                                 className="react-icons"
                             />
                         </button>
-                        <div key={nota.id + 'desc'} className="nota_desc">
+                        <div key={nota._id + 'desc'} className="nota_desc">
                             {nota.desc}
                         </div>
                     </div>

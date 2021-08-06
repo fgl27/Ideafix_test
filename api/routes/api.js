@@ -6,62 +6,63 @@ const router = express.Router();
 const cors = require('cors');
 router.use(cors());
 
-//Inicializa as constantes do express
-const uuid = require('uuid');
-
 //Inicializa o obj notas
-const banco = require('../banco/index');
-
-//Inicializa o filtro ID para usar com some()
-const filtroID = req => notas =>
-    notas.id.toString() === req.params.id.toString();
+const Nota = require('../banco/index');
 
 //Habilita enviar JSON obj body
 router.use(express.json());
 
 // GET todas notas
-router.get('/', cors(), (req, res) => res.json(banco.get()));
+router.get('/', cors(), async (req, res) => {
+    try {
+        const notas = await Nota.find();
+        res.json(notas);
+    } catch (err) {
+        res.status(500).json({msg: err.message});
+    }
+});
 
 // POST cria uma notas
-router.post('/', cors(), (req, res) => {
-    //gera a ID da nova nota
-    const id = uuid.v4();
-
-    //Cria o objeto
-    const novaNota = {
-        id: id,
-        ...req.body,
-    };
-
-    //verifica se titulo e descrição estão presentes
-    if (!novaNota.titulo || !novaNota.desc) {
-        return res
-            .status(400)
-            .json({msg: 'Favor incluir ambos título e descrição'});
+router.post('/', cors(), async (req, res) => {
+    const nova_nota = new Nota({
+        titulo: req.body.titulo,
+        desc: req.body.desc,
+    });
+    try {
+        await nova_nota.save();
+        const notas = await Nota.find();
+        res.status(201).json(notas);
+    } catch (err) {
+        res.status(400).json({msg: err.message});
     }
-
-    //Salva e retorna o objeto
-    banco.adiciona(novaNota);
-    res.json(banco.get());
 });
 
 // DELETE Nota
-router.delete('/:id', cors(), (req, res) => {
-    const notas = banco.get();
-
-    //verifica se existe
-    const existe = notas.some(filtroID(req));
-
-    //caso sim salva e retorna o obj
-    if (existe) {
-        const notasFiltrada = notas.filter(nota => !filtroID(req)(nota));
-        banco.salva(notasFiltrada);
-        res.json(notasFiltrada);
-    } else {
-        return res
-            .status(400)
-            .json({msg: `ERRO ID "${req.params.id}" não existe`});
+router.delete('/:id', cors(), getNota, async (req, res) => {
+    try {
+        await res.nota.remove();
+        const notas = await Nota.find();
+        res.status(201).json(notas);
+    } catch (err) {
+        res.status(500).json({message: err.message});
     }
 });
+
+async function getNota(req, res, next) {
+    let nota;
+    try {
+        nota = await Nota.findById(req.params.id);
+        if (nota == null) {
+            return res
+                .status(404)
+                .json({msg: `ERRO ID "${req.params.id}" não existe`});
+        }
+    } catch (err) {
+        return res.status(500).json({message: err.message});
+    }
+
+    res.nota = nota;
+    next();
+}
 
 module.exports = router;
