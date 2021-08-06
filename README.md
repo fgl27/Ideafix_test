@@ -2,6 +2,20 @@
 
 # Iniciando a API e o APP
 
+### mongoDB
+``` bash
+# Instala mongoDB (linux Ubuntu)
+sudo apt-get mongodb
+
+# Inicia mongoDB
+mongo
+
+# Visualiza o objeto notas
+use notas
+db.notas.find().pretty();
+
+```
+
 ### Express API
 ``` bash
 # Navea para pasta api
