@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {IoClose} from 'react-icons/io5';
+import './index.css';
+import {Lista} from './lista/index';
+import {Inputs} from './inputs/index';
 
 class Notas extends Component {
     //Inicializa as variaveis de estado
@@ -10,7 +12,10 @@ class Notas extends Component {
             titulo: '',
             desc: '',
         };
-        this.inputTitle = React.createRef();
+        this.UpdateNotas = this.UpdateNotas.bind(this);
+        this.AdicionaNota = this.AdicionaNota.bind(this);
+        this.DeletaNota = this.DeletaNota.bind(this);
+        this.AtualizaState = this.AtualizaState.bind(this);
     }
 
     //Carrega as notas da API quando o componente é iniciado
@@ -29,16 +34,11 @@ class Notas extends Component {
     //Função usada pra atualizar as notas quando alguma é adicionada ou deletada
     UpdateNotas = async (notas, clearStates) => {
         if (Array.isArray(notas)) {
-            this.setState(
-                {
-                    notas,
-                    titulo: clearStates ? '' : this.titulo,
-                    desc: clearStates ? '' : this.desc,
-                },
-                () => console.log('notas fetched...', notas),
-            );
-
-            if (clearStates) this.inputTitle.value = '';
+            this.setState({
+                notas,
+                titulo: clearStates ? '' : this.state.titulo,
+                desc: clearStates ? '' : this.state.desc,
+            });
         } else {
             const msg = notas.msg;
             console.log(msg);
@@ -90,67 +90,23 @@ class Notas extends Component {
                         target="_blank"
                         rel="noreferrer">
                         <img
-                            className="logo"
+                            className="logo drop_shadow"
                             src="https://ideafix.com.br/wp-content/uploads/2020/12/Ideafix_Logo-RGB-01.png"
                         />
                     </a>
                 </header>
                 <div className="container">
-                    <div className="input_container">
-                        <h2 className="textCenter">Bloco de notas</h2>
-                        <input
-                            className="input"
-                            type="text"
-                            placeholder="Título"
-                            ref={el => (this.inputTitle = el)}
-                            value={this.state.title}
-                            name="titulo"
-                            onChange={this.AtualizaState}
-                        />
-                        <textarea
-                            className="input inputDesc"
-                            type="text"
-                            placeholder="Descrição"
-                            value={this.state.desc}
-                            name="desc"
-                            onChange={this.AtualizaState}
-                        />
-                        <button className="button" onClick={this.AdicionaNota}>
-                            <div className="button_text">Criar nota</div>
-                        </button>
-                    </div>
-                    <div>
-                        <h1 className="textCenter">Suas notas</h1>
-                        <div className="notas_container">
-                            {this.state.notas.map(nota => (
-                                <div key={nota.id} className="nota">
-                                    <div key={nota.id + 'titleHolder'}>
-                                        <div
-                                            key={nota.id + 'titulo'}
-                                            className="nota_titulo">
-                                            {nota.titulo}
-                                        </div>
-                                        <button
-                                            key={nota.id + 'close_button'}
-                                            className="nota_button"
-                                            onClick={() =>
-                                                this.DeletaNota(nota.id)
-                                            }>
-                                            <IoClose
-                                                key={nota.id + 'close_icon'}
-                                                className="react-icons"
-                                            />
-                                        </button>
-                                    </div>
-                                    <div
-                                        key={nota.id + 'desc'}
-                                        className="nota_desc">
-                                        {nota.desc}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <Inputs
+                        inputTitle={this.inputTitle}
+                        titulo={this.state.titulo}
+                        desc={this.state.desc}
+                        AtualizaState={this.AtualizaState}
+                        AdicionaNota={this.AdicionaNota}
+                    />
+                    <Lista
+                        notas={this.state.notas}
+                        DeletaNota={this.DeletaNota}
+                    />
                 </div>
             </div>
         );
