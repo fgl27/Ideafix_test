@@ -1,3 +1,4 @@
+//Inicializa supporte do arquivo .env usando para process.env
 require('dotenv').config();
 
 //Inicializa as constantes do express
