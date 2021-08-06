@@ -44,7 +44,7 @@ router.delete('/:id', cors(), getNota, async (req, res) => {
         const notas = await Nota.find();
         res.status(201).json(notas);
     } catch (err) {
-        res.status(500).json({message: err.message});
+        res.status(500).json({msg: err.message});
     }
 });
 
@@ -58,7 +58,7 @@ async function getNota(req, res, next) {
                 .json({msg: `ERRO ID "${req.params.id}" não existe`});
         }
     } catch (err) {
-        return res.status(500).json({message: err.message});
+        return res.status(500).json({msg: err.message});
     }
 
     res.nota = nota;
