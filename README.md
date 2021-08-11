@@ -1,4 +1,7 @@
-# App atividade de teste ideafix
+# Aplicativo bloco de anotações
+
+- backend server Express + Node, banco MongoDB
+- frontend React + Node
 
 # Iniciando a API e o APP
 
