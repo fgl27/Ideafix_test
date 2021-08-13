@@ -47,6 +47,19 @@ const Notas = forwardRef((props, ref) => {
             .catch(error => console.error('DeletaNota Error:', error));
     };
 
+    const UpdateDescClass = async element => {
+        if (!element) return;
+
+        const elClass = element.className;
+        const class_show = 'nota_desc_show';
+
+        if (elClass && elClass.indexOf(class_show) !== -1) {
+            element.classList.remove(class_show);
+        } else {
+            element.classList.add(class_show);
+        }
+    };
+
     useImperativeHandle(ref, () => {
         return {
             setNotas: setNotas,
@@ -75,7 +88,10 @@ const Notas = forwardRef((props, ref) => {
                                 />
                             </button>
                         </div>
-                        <div key={nota._id + 'desc'} className="nota_desc">
+                        <div
+                            key={nota._id + 'desc'}
+                            className="nota_desc"
+                            onClick={({target}) => UpdateDescClass(target)}>
                             {nota.desc}
                         </div>
                     </div>
