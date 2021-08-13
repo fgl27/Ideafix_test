@@ -13,17 +13,15 @@ function App() {
 
     return (
         <div className="App">
-            <div>
-                <header>
-                    <img
-                        className="logo drop_shadow"
-                        src={process.env.PUBLIC_URL + '/logo512.png'}
-                    />
-                </header>
-                <div className="container">
-                    <Input updateNotas={updateNotas} />
-                    <Notas ref={ref} />
-                </div>
+            <header>
+                <img
+                    className="logo drop_shadow"
+                    src={process.env.PUBLIC_URL + '/logo512.png'}
+                />
+            </header>
+            <div className="container">
+                <Input updateNotas={updateNotas} />
+                <Notas ref={ref} />
             </div>
         </div>
     );

@@ -52,24 +52,28 @@ const Notas = forwardRef((props, ref) => {
     });
 
     return (
-        <div>
+        <div className="Notas_container">
             <h1 className="textCenter">Suas notas</h1>
             <div className="notas_container">
                 {notas.map(nota => (
                     <div key={nota._id} className="nota">
-                        <div key={nota._id + 'titulo'} className="nota_titulo">
-                            {nota.titulo}
+                        <div className="nota_titulo_container">
+                            <div
+                                key={nota._id + 'titulo'}
+                                className="nota_titulo">
+                                {nota.titulo}
+                            </div>
+                            <button
+                                key={nota._id + 'close_button'}
+                                className="nota_button"
+                                name={nota._id}
+                                onClick={() => DeletaNota(nota._id)}>
+                                <IoClose
+                                    key={nota._id + 'close_icon'}
+                                    className="react-icons"
+                                />
+                            </button>
                         </div>
-                        <button
-                            key={nota._id + 'close_button'}
-                            className="nota_button"
-                            name={nota._id}
-                            onClick={() => DeletaNota(nota._id)}>
-                            <IoClose
-                                key={nota._id + 'close_icon'}
-                                className="react-icons"
-                            />
-                        </button>
                         <div key={nota._id + 'desc'} className="nota_desc">
                             {nota.desc}
                         </div>
