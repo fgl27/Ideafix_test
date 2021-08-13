@@ -6,13 +6,17 @@ import React, {
 } from 'react';
 
 import './index.css';
+import {Loading} from '../loading/index';
 import {IoClose} from 'react-icons/io5';
+
+// Kick off fetching as early as possible
+const response = fetch('http://localhost:5000');
 
 const Notas = forwardRef((props, ref) => {
     const [notas, setNotas] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000')
+        response
             .then(res => {
                 if (!res.ok) {
                     throw new Error('HTTP status ' + res.status);
@@ -52,32 +56,36 @@ const Notas = forwardRef((props, ref) => {
     return (
         <div className="Notas_container">
             <h1 className="textCenter">Suas notas</h1>
-            <div className="notas_container">
-                {notas.map(nota => (
-                    <div key={nota._id} className="nota">
-                        <div className="nota_titulo_container">
-                            <div
-                                key={nota._id + 'titulo'}
-                                className="nota_titulo">
-                                {nota.titulo}
+            {notas.length ? (
+                <div className="notas_container">
+                    {notas.map(nota => (
+                        <div key={nota._id} className="nota">
+                            <div className="nota_titulo_container">
+                                <div
+                                    key={nota._id + 'titulo'}
+                                    className="nota_titulo">
+                                    {nota.titulo}
+                                </div>
+                                <button
+                                    key={nota._id + 'close_button'}
+                                    className="nota_button"
+                                    name={nota._id}
+                                    onClick={() => DeletaNota(nota._id)}>
+                                    <IoClose
+                                        key={nota._id + 'close_icon'}
+                                        className="react-icons"
+                                    />
+                                </button>
                             </div>
-                            <button
-                                key={nota._id + 'close_button'}
-                                className="nota_button"
-                                name={nota._id}
-                                onClick={() => DeletaNota(nota._id)}>
-                                <IoClose
-                                    key={nota._id + 'close_icon'}
-                                    className="react-icons"
-                                />
-                            </button>
+                            <div key={nota._id + 'desc'} className="nota_desc">
+                                {nota.desc}
+                            </div>
                         </div>
-                        <div key={nota._id + 'desc'} className="nota_desc">
-                            {nota.desc}
-                        </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            ) : (
+                <Loading />
+            )}
         </div>
     );
 });
