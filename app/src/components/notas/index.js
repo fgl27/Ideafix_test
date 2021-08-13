@@ -12,7 +12,6 @@ const Notas = forwardRef((props, ref) => {
     const [notas, setNotas] = useState([]);
 
     useEffect(() => {
-        console.log('useEffect');
         fetch('http://localhost:5000')
             .then(res => {
                 if (!res.ok) {
@@ -25,7 +24,6 @@ const Notas = forwardRef((props, ref) => {
     }, []);
 
     const DeletaNota = async id => {
-        console.log('DeletaNota');
         fetch('http://localhost:5000/' + id, {
             method: 'DELETE',
             headers: {
