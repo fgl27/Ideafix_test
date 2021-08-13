@@ -7,11 +7,6 @@
     align-items: center;
 }
 
-.textCenter {
-    text-align: center;
-    color: var(--verde);
-}
-
 .input {
     width: 150px;
     margin-bottom: 5px;

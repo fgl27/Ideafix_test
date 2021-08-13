@@ -42,3 +42,9 @@ header {
         margin-left: 0;
     }
 }
+
+
+.textCenter {
+    text-align: center;
+    color: var(--verde);
+}
