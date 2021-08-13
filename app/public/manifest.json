@@ -1,6 +1,6 @@
 {
-    "short_name": "ideafix React App",
-    "name": "ideafix React App",
+    "short_name": "Bloco de Notas",
+    "name": "Bloco de Notas React App",
     "icons": [
         {
             "src": "favicon.ico",
