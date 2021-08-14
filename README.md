@@ -7,8 +7,7 @@ A Repo to demonstrate how to make a Notepad REST-API/App that allows to List, Ad
 
 # The look of the app:
 
-![app](https://raw.githubusercontent.com/fgl27/Notepad_app/master/app/public/Screenshot_from_2021-08-05_15-08-35.png)
-
+![app](https://raw.githubusercontent.com/fgl27/Notepad_app/master/app/public/app.gif)
 
 # Starting REST-API and APP
 
