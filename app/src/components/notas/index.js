@@ -6,8 +6,8 @@ import React, {
 } from 'react';
 
 import './index.css';
+import {Nota} from './nota/index';
 import {Loading} from '../loading/index';
-import {IoClose} from 'react-icons/io5';
 
 // Kick off fetching as early as possible
 const response = fetch('http://localhost:5000');
@@ -27,83 +27,26 @@ const Notas = forwardRef((props, ref) => {
             .catch(error => console.error('componentDidMount Error:', error));
     }, []);
 
-    const DeletaNota = async id => {
-        fetch('http://localhost:5000/' + id, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res => res.json())
-            .then(notas => {
-                if (Array.isArray(notas)) {
-                    setNotas(notas);
-                } else {
-                    const msg = notas.msg;
-                    console.log(msg);
-                    alert(msg);
-                }
-            })
-            .catch(error => console.error('DeletaNota Error:', error));
-    };
-
-    const UpdateDescClass = async element => {
-        if (!element) return;
-
-        const elClass = element.className;
-        const class_show = 'nota_desc_show';
-
-        if (elClass && elClass.indexOf(class_show) !== -1) {
-            element.classList.remove(class_show);
-        } else {
-            element.classList.add(class_show);
-        }
-    };
-
     useImperativeHandle(ref, () => {
         return {
             setNotas: setNotas,
         };
     });
 
-    const NotasContainer = () => {
-        return (
-            <div className="notas_container">
-                {notas.map(nota => (
-                    <div key={nota._id} className="nota">
-                        <div className="nota_titulo_container">
-                            <div
-                                key={nota._id + 'titulo'}
-                                className="nota_titulo">
-                                {nota.titulo}
-                            </div>
-                            <button
-                                key={nota._id + 'close_button'}
-                                className="nota_button"
-                                name={nota._id}
-                                onClick={() => DeletaNota(nota._id)}>
-                                <IoClose
-                                    key={nota._id + 'close_icon'}
-                                    className="react-icons"
-                                />
-                            </button>
-                        </div>
-                        <div
-                            key={nota._id + 'desc'}
-                            className="nota_desc"
-                            onClick={({target}) => UpdateDescClass(target)}>
-                            {nota.desc}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        );
-    };
-
     return (
-        <div className="Notas_container">
+        <div className="notas_container">
             <h1 className="textCenter">Suas notas</h1>
-            {notas.length ? <NotasContainer /> : <Loading />}
+            {notas.length ? (
+                <div className="notas_inner_container">
+                    {notas.map(nota => (
+                        <Nota key={nota._id} notas={nota} setNotas={setNotas} />
+                    ))}
+                </div>
+            ) : (
+                <div className="loading_container">
+                    <Loading />
+                </div>
+            )}
         </div>
     );
 });

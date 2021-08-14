@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import './index.css';
 
+Input.propTypes = {
+    updateNotas: PropTypes.func,
+};
+
 export function Input(props) {
     const [state, setState] = useState({
         titulo: '',
@@ -67,7 +71,3 @@ export function Input(props) {
         </div>
     );
 }
-
-Input.propTypes = {
-    updateNotas: PropTypes.func,
-};
