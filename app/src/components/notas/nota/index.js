@@ -39,7 +39,7 @@ export function Nota(props) {
             .catch(error => console.error('DeletaNota Error:', error));
     };
 
-    const AtualizaState = async env => {
+    const AtualizaNota = async env => {
         const {name, value} = env.target;
         setNota({
             ...nota,
@@ -121,7 +121,7 @@ export function Nota(props) {
                         placeholder="Título"
                         name="titulo"
                         value={nota.titulo}
-                        onChange={e => AtualizaState(e)}
+                        onChange={e => AtualizaNota(e)}
                     />
                     <button
                         key={nota._id + 'edit_button'}
@@ -153,7 +153,7 @@ export function Nota(props) {
                     placeholder="Descrição"
                     name="desc"
                     value={nota.desc}
-                    onChange={e => AtualizaState(e)}
+                    onChange={e => AtualizaNota(e)}
                 />
             </div>
         );
