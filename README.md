@@ -1,9 +1,9 @@
 # Notepad app
 
-A Repo to demonstrate how to make a Notepad REST-API/App that allows to List, Add, Edit and delete Notes.
+A project to demonstrate how to make a Notepad REST-API/App that allows to List, Add, Edit and delete Notes.
 
-- backend REST-API using Node, Express and MongoDB
-- frontend React and Node
+- Backend REST-API using Node, Express and MongoDB.
+- Frontend React.
 
 # The look of the app:
 
