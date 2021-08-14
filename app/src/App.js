@@ -15,6 +15,7 @@ function App() {
         <div className="App">
             <header>
                 <a
+                    className="drop_shadow"
                     href="https://github.com/fgl27"
                     target="_blank"
                     rel="noreferrer">
