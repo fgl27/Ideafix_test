@@ -16,7 +16,7 @@ function App() {
             <header>
                 <a
                     className="drop_shadow"
-                    href="https://github.com/fgl27"
+                    href="https://github.com/fgl27/Notepad_app"
                     target="_blank"
                     rel="noreferrer">
                     Designed by fgl27
