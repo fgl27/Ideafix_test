@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
-const notaSchema = new mongoose.Schema({
-    titulo: {
+const noteSchema = new mongoose.Schema({
+    title: {
         type: String,
         required: true,
     },
-    desc: {
+    description: {
         type: String,
         required: true,
     },
 });
 
-module.exports = mongoose.model('nota', notaSchema);
+module.exports = mongoose.model('note', noteSchema);

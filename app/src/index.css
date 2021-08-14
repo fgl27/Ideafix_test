@@ -4,13 +4,14 @@ code {
 }
 
 :root {
-    --verde: #029d92;
-    --verde2: #00756d;
-    --verde3: #00504b;
-    --roxo: #82288d;
-    --roxo2: #491d4e;
-    --roxo3: #361b3a;
+    --primary: #029d92;
+    --primary2: #00756d;
+    --primary3: #00504b;
+    --secondary: #82288d;
+    --secondary2: #491d4e;
+    --secondary3: #361b3a;
     --headercolor: #353c44;
+    --linkcolor: #0366d6;
 }
 
 body,

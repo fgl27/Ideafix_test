@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 Input.propTypes = {
-    updateNotas: PropTypes.func,
+    updateNotes: PropTypes.func,
 };
 
 export function Input(props) {
     const [state, setState] = useState({
-        titulo: '',
-        desc: '',
+        title: '',
+        description: '',
     });
 
-    const AdicionaNota = async () => {
+    const AddNote = async () => {
         fetch('http://localhost:5000', {
             method: 'POST',
             headers: {
@@ -22,23 +22,23 @@ export function Input(props) {
             body: JSON.stringify(state),
         })
             .then(res => res.json())
-            .then(notas => {
-                if (Array.isArray(notas)) {
+            .then(notes => {
+                if (Array.isArray(notes)) {
                     setState({
-                        titulo: '',
-                        desc: '',
+                        title: '',
+                        description: '',
                     });
-                    props.updateNotas(notas);
+                    props.updateNotes(notes);
                 } else {
-                    const msg = notas.msg;
+                    const msg = notes.msg;
                     console.log(msg);
                     alert(msg);
                 }
             })
-            .catch(error => console.error('AdicionaNota Error:', error));
+            .catch(error => console.error('AddNote Error:', error));
     };
 
-    const AtualizaState = async env => {
+    const UpdateState = async env => {
         const {name, value} = env.target;
         setState({
             ...state,
@@ -48,25 +48,25 @@ export function Input(props) {
 
     return (
         <div className="input_container">
-            <h2 className="textCenter">Bloco de notas</h2>
+            <h2 className="textCenter">Notepad</h2>
             <input
                 className="input"
                 type="text"
-                placeholder="Título"
-                name="titulo"
-                value={state.titulo}
-                onChange={e => AtualizaState(e)}
+                placeholder="Title"
+                name="title"
+                value={state.title}
+                onChange={e => UpdateState(e)}
             />
             <textarea
-                className="input inputDesc"
+                className="input inputDescription"
                 type="text"
-                placeholder="Descrição"
-                name="desc"
-                value={state.desc}
-                onChange={e => AtualizaState(e)}
+                placeholder="Description"
+                name="description"
+                value={state.description}
+                onChange={e => UpdateState(e)}
             />
-            <button className="button" onClick={() => AdicionaNota()}>
-                <div className="drop_shadow">Criar nota</div>
+            <button className="button" onClick={() => AddNote()}>
+                <div className="drop_shadow">Add note</div>
             </button>
         </div>
     );

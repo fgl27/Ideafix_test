@@ -6,14 +6,14 @@ import React, {
 } from 'react';
 
 import './index.css';
-import {Nota} from './nota/index';
+import {Note} from './note/index';
 import {Loading} from '../loading/index';
 
 // Kick off fetching as early as possible
 const response = fetch('http://localhost:5000');
 
-const Notas = forwardRef((props, ref) => {
-    const [notas, setNotas] = useState([]);
+const Notes = forwardRef((props, ref) => {
+    const [notes, setNotes] = useState([]);
 
     useEffect(() => {
         response
@@ -23,23 +23,23 @@ const Notas = forwardRef((props, ref) => {
                 }
                 return res.json();
             })
-            .then(notas => setNotas(notas))
+            .then(notes => setNotes(notes))
             .catch(error => console.error('componentDidMount Error:', error));
     }, []);
 
     useImperativeHandle(ref, () => {
         return {
-            setNotas: setNotas,
+            setNotes: setNotes,
         };
     });
 
     return (
-        <div className="notas_container">
-            <h1 className="textCenter notash1">Suas notas</h1>
-            {notas.length ? (
-                <div className="notas_inner_container">
-                    {notas.map(nota => (
-                        <Nota key={nota._id} notas={nota} setNotas={setNotas} />
+        <div className="notes_container">
+            <h1 className="textCenter notes_container_h1">Your notes</h1>
+            {notes.length ? (
+                <div className="notes_inner_container">
+                    {notes.map(note => (
+                        <Note key={note._id} notes={note} setNotes={setNotes} />
                     ))}
                 </div>
             ) : (
@@ -51,5 +51,5 @@ const Notas = forwardRef((props, ref) => {
     );
 });
 
-Notas.displayName = 'Notas';
-export default Notas;
+Notes.displayName = 'Notes';
+export default Notes;

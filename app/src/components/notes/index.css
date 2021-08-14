@@ -1,9 +1,9 @@
-.notas_container {
+.notes_container {
     display: flex;
     flex-direction: column;
 }
 
-.notas_inner_container {
+.notes_inner_container {
     flex-direction: row;
     flex-flow: row wrap;
     align-content: flex-start;
@@ -14,7 +14,7 @@
     padding-top: 31px;
 }
 
-.notash1 {
+.notes_container_h1 {
     height: 1em;
     margin-bottom: 0;
 }
@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.notas_inner_container,
+.notes_inner_container,
 .loading_container {
     display: flex;
     min-width: calc(100vw - 250px);
@@ -32,7 +32,7 @@
 }
 
 @media screen and (max-width: 700px) {
-    .notas_inner_container {
+    .notes_inner_container {
         justify-content: space-around;
         overflow-y: inherit;
         height: auto;

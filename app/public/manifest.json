@@ -1,6 +1,6 @@
 {
-    "short_name": "Bloco de Notas",
-    "name": "Bloco de Notas React App",
+    "short_name": "Notepad",
+    "name": "Notepad React App",
     "icons": [
         {
             "src": "favicon.ico",

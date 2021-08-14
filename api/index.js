@@ -7,7 +7,7 @@ const app = express();
 
 //Inicializa mongodb
 const mongoose = require('mongoose');
-var DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost/notas';
+var DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost/notes';
 mongoose.connect(DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

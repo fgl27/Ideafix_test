@@ -1,27 +1,33 @@
 import React, {useRef} from 'react';
 import './App.css';
 
-import Notas from './components/notas/index';
+import Notes from './components/notes/index';
 import {Input} from './components/input/index';
 
 function App() {
     const ref = useRef(null);
 
-    const updateNotas = notas => {
-        ref.current.setNotas(notas);
+    const updateNotes = notes => {
+        ref.current.setNotes(notes);
     };
 
     return (
         <div className="App">
             <header>
-                <img
-                    className="logo drop_shadow"
-                    src={process.env.PUBLIC_URL + '/logo512.png'}
-                />
+                <a
+                    href="https://github.com/fgl27"
+                    target="_blank"
+                    rel="noreferrer">
+                    Designed by fgl27
+                    <img
+                        className="logo drop_shadow"
+                        src={process.env.PUBLIC_URL + '/logo512.png'}
+                    />
+                </a>
             </header>
             <div className="container">
-                <Input updateNotas={updateNotas} />
-                <Notas ref={ref} />
+                <Input updateNotes={updateNotes} />
+                <Notes ref={ref} />
             </div>
         </div>
     );

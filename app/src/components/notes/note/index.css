@@ -1,8 +1,8 @@
-.nota_titulo_container {
+.note_title_container {
     display: flex;
 }
 
-.nota {
+.note {
     display: flex;
     flex-direction: column;
     margin-right: 20px;
@@ -11,32 +11,32 @@
     width: 150px;
     height: fit-content;
     background: #ffffff;
-    border: 1px solid var(--verde);
+    border: 1px solid var(--primary);
     padding: 10px;
     box-shadow: 2px 2px 3px rgb(0 0 0 / 40%);
     border-radius: 3px;
 }
 
-.nota_imput {
+.note_input {
     width: 100% !important;
 }
 
-.nota_titulo {
+.note_title {
     font-weight: bold;
     font-size: 110%;
     display: inline-block;
     width: 135px;
-    color: var(--roxo);
+    color: var(--secondary);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    border-bottom: 1px solid var(--verde2);
+    border-bottom: 1px solid var(--primary2);
 }
 
 .edit_button,
 .delete_button {
     transform: translate(15px, -15px);
-    background: var(--roxo);
+    background: var(--secondary);
     color: #fff;
     font-weight: bold;
     cursor: pointer;
@@ -54,12 +54,12 @@
 
 .edit_button:hover,
 .delete_button:hover {
-    background-color: var(--roxo2);
+    background-color: var(--secondary2);
 }
 
 .edit_button:active,
 .delete_button:active {
-    background-color: var(--roxo3);
+    background-color: var(--secondary3);
     box-shadow: 0 2px #666;
     transform: translate(15px, -13px);
 }
@@ -68,7 +68,7 @@
     transform: translate(10px, -13px);
 }
 
-.nota_desc {
+.note_description {
     text-overflow: ellipsis;
     overflow: hidden;
     height: 1.5em;
@@ -77,7 +77,7 @@
     white-space: nowrap;
 }
 
-.nota_desc_show {
+.note_description_show {
     white-space: pre-wrap;
     text-overflow: unset;
     overflow: visible;
@@ -113,8 +113,8 @@
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: auto;
-    background-color: var(--verde2);
+    width: max-content;
+    background-color: var(--primary2);
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -134,7 +134,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: var(--verde2) transparent transparent transparent;
+    border-color: var(--primary2) transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {

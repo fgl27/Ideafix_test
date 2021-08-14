@@ -2,73 +2,73 @@
 const express = require('express');
 const router = express.Router();
 
-//Habilita cors para evitar error de CORS do app
+//Enable cors support
 const cors = require('cors');
 router.use(cors());
 
-//Inicializa o obj notas
-const Nota = require('../banco/index');
+//Inicialize db obj
+const Note = require('../db/index');
 
-//Habilita enviar JSON obj body
+//Enable JSON obj for body
 router.use(express.json());
 
-// GET todas notas
+// GET all notes
 router.get('/', cors(), async (req, res) => {
     try {
-        const notas = await Nota.find();
-        res.json(notas);
+        const notes = await Note.find();
+        res.json(notes);
     } catch (err) {
         res.status(500).json({msg: err.message});
     }
 });
 
-// POST cria uma notas
+// POST create notes
 router.post('/', cors(), async (req, res) => {
-    const nova_nota = new Nota({
-        titulo: req.body.titulo,
-        desc: req.body.desc,
+    const nova_note = new Note({
+        title: req.body.title,
+        description: req.body.description,
     });
     try {
-        await nova_nota.save();
-        const notas = await Nota.find();
-        res.status(201).json(notas);
+        await nova_note.save();
+        const notes = await Note.find();
+        res.status(201).json(notes);
     } catch (err) {
         res.status(400).json({msg: err.message});
     }
 });
 
-// DELETE Nota
-router.delete('/:id', cors(), getNota, async (req, res) => {
+// DELETE Note
+router.delete('/:id', cors(), getNote, async (req, res) => {
     try {
-        await res.nota.remove();
-        const notas = await Nota.find();
-        res.status(201).json(notas);
+        await res.note.remove();
+        const notes = await Note.find();
+        res.status(201).json(notes);
     } catch (err) {
         res.status(500).json({msg: err.message});
     }
 });
 
-// Update Nota
-router.patch('/:id', cors(), getNota, async (req, res) => {
-    if (req.body.titulo != null) {
-        res.nota.titulo = req.body.titulo;
+// Update Note
+router.patch('/:id', cors(), getNote, async (req, res) => {
+    if (req.body.title != null) {
+        res.note.title = req.body.title;
     }
-    if (req.body.desc != null) {
-        res.nota.desc = req.body.desc;
+    if (req.body.description != null) {
+        res.note.description = req.body.description;
     }
     try {
-        const updatedNota = await res.nota.save();
-        res.status(202).json(updatedNota);
+        const updatedNote = await res.note.save();
+        res.status(202).json(updatedNote);
     } catch (err) {
         res.status(400).json({msg: err.message});
     }
 });
 
-async function getNota(req, res, next) {
-    let nota;
+async function getNote(req, res, next) {
+    let note;
     try {
-        nota = await Nota.findById(req.params.id);
-        if (nota == null) {
+        note = await Note.findById(req.params.id);
+        if (note == null) {
             return res
                 .status(404)
                 .json({msg: `ERRO ID "${req.params.id}" não existe`});
@@ -77,7 +77,7 @@ async function getNota(req, res, next) {
         return res.status(500).json({msg: err.message});
     }
 
-    res.nota = nota;
+    res.note = note;
     next();
 }
 

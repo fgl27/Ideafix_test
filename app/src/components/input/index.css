@@ -9,13 +9,13 @@
     width: 250px;
     min-width: 250px;
     position: sticky;
-    border-right: 2px solid var(--verde2);
+    border-right: 2px solid var(--primary2);
 }
 
 @media screen and (max-width: 700px) {
     .input_container {
         border-right: 0;
-        border-bottom: 2px solid var(--verde2);
+        border-bottom: 2px solid var(--primary2);
         position: unset;
         overflow: unset;
         width: 90vw;
@@ -30,7 +30,7 @@
     margin-bottom: 5px;
     display: inline-block;
     background-color: #fff;
-    border: 1px solid var(--roxo);
+    border: 1px solid var(--secondary);
     border-radius: 3px;
     outline: none;
     box-sizing: border-box;
@@ -39,10 +39,10 @@
 
 .input:focus {
     background-color: #ffffff;
-    box-shadow: 0 0 0 1.5px var(--verde);
+    box-shadow: 0 0 0 1.5px var(--primary);
 }
 
-.inputDesc {
+.inputDescription {
     min-height: 100px;
 }
 
@@ -54,14 +54,14 @@
 .button {
     box-sizing: border-box;
     margin-top: 1%;
-    background: var(--verde);
+    background: var(--primary);
     color: #fff;
     padding: 5px;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
     outline: none;
-    border: 1px solid var(--roxo);
+    border: 1px solid var(--secondary);
     border-radius: 6px;
     box-shadow: 0 4px #999;
     font-size: 120%;
@@ -70,11 +70,11 @@
 }
 
 .button:hover {
-    background-color: var(--verde2);
+    background-color: var(--primary2);
 }
 
 .button:active {
-    background-color: var(--verde3);
+    background-color: var(--primary3);
     box-shadow: 0 2px #666;
     transform: translateY(2px);
 }
