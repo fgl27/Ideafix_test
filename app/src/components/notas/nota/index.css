@@ -17,9 +17,13 @@
     border-radius: 3px;
 }
 
+.nota_imput {
+    width: 100% !important;
+}
+
 .nota_titulo {
     font-weight: bold;
-    font-size: 125%;
+    font-size: 110%;
     display: inline-block;
     width: 135px;
     color: var(--roxo);
@@ -29,7 +33,8 @@
     border-bottom: 1px solid var(--verde2);
 }
 
-.nota_button {
+.edit_button,
+.delete_button {
     transform: translate(15px, -15px);
     background: var(--roxo);
     color: #fff;
@@ -43,14 +48,24 @@
     height: 25px;
 }
 
-.nota_button:hover {
+.edit_button {
+    transform: translate(10px, -15px);
+}
+
+.edit_button:hover,
+.delete_button:hover {
     background-color: var(--roxo2);
 }
 
-.nota_button:active {
+.edit_button:active,
+.delete_button:active {
     background-color: var(--roxo3);
     box-shadow: 0 2px #666;
     transform: translate(15px, -13px);
+}
+
+.edit_button:active {
+    transform: translate(10px, -13px);
 }
 
 .nota_desc {
@@ -63,7 +78,7 @@
 }
 
 .nota_desc_show {
-    white-space: unset;
+    white-space: pre-wrap;
     text-overflow: unset;
     overflow: visible;
     word-break: break-all;
@@ -71,8 +86,57 @@
     height: auto;
 }
 
-.react-icons {
-    width: 200%;
-    height: 200%;
-    transform: translate(-26%, -26%);
+.delete-icon {
+    width: 1.5em;
+    height: 1.5em;
+    transform: translate(-22%, 1%);
+}
+
+.back-icon {
+    width: 1.1em;
+    height: 1.1em;
+    transform: translate(-18%, 10%);
+}
+
+.save-icon {
+    width: 1.1em;
+    height: 1.1em;
+    transform: translate(-9%, 11%);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 0.15em dotted #24292e;
+    filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 1));
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: var(--verde2);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.5ch;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tooltip .tooltiptext::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--verde2) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }

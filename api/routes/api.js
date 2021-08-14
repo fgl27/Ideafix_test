@@ -48,6 +48,22 @@ router.delete('/:id', cors(), getNota, async (req, res) => {
     }
 });
 
+// Update Nota
+router.patch('/:id', cors(), getNota, async (req, res) => {
+    if (req.body.titulo != null) {
+        res.nota.titulo = req.body.titulo;
+    }
+    if (req.body.desc != null) {
+        res.nota.desc = req.body.desc;
+    }
+    try {
+        const updatedNota = await res.nota.save();
+        res.status(202).json(updatedNota);
+    } catch (err) {
+        res.status(400).json({msg: err.message});
+    }
+});
+
 async function getNota(req, res, next) {
     let nota;
     try {

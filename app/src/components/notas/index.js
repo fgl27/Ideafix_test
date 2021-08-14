@@ -35,7 +35,7 @@ const Notas = forwardRef((props, ref) => {
 
     return (
         <div className="notas_container">
-            <h1 className="textCenter">Suas notas</h1>
+            <h1 className="textCenter notash1">Suas notas</h1>
             {notas.length ? (
                 <div className="notas_inner_container">
                     {notas.map(nota => (

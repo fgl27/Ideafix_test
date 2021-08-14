@@ -11,7 +11,12 @@
     margin-bottom: 50px;
     overflow-y: scroll;
     height: calc(100vh - 120px);
-    padding-top: 10px;
+    padding-top: 31px;
+}
+
+.notash1 {
+    height: 1em;
+    margin-bottom: 0;
 }
 
 .loading_container {
