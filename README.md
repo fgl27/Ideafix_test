@@ -1,35 +1,42 @@
-# Aplicativo bloco de anotações
+# Notepad app
 
-- backend server Express + Node, banco MongoDB
-- frontend React + Node
+A Repo to demonstrate how to make a Notepad REST-API/App that allows to List, Add, Edit and delete Notes.
 
-# Iniciando a API e o APP
+- backend REST-API using Node, Express and MongoDB
+- frontend React and Node
+
+# The look of the app:
+
+![app](https://raw.githubusercontent.com/fgl27/Notepad_app/master/app/public/Screenshot_from_2021-08-05_15-08-35.png)
+
+
+# Starting REST-API and APP
 
 ### mongoDB server
 
 ``` bash
-# Instala mongoDB (linux Ubuntu)
+# Starting mongoDB (linux Ubuntu)
 sudo apt-get install mongodb
 
-# Inicia mongoDB
+# Starting mongoDB
 mongo
 
-# Visualiza o objeto notas
-use notas
-db.notas.find().pretty();
+# View the notes object
+use notes
+db.notes.find().pretty();
 
 ```
 
 ### Express API
 
 ``` bash
-# Navea para pasta api
+# Navigate to folder api
 cd api
 
-# Instala as dependências
+# Install dependencies
 npm install
 
-# Inicia Express
+# Starting Express
 npm start
 
 ```
@@ -37,19 +44,15 @@ npm start
 ### React APP
 
 ``` bash
-# Navea para pasta api
+# Navigate to app folder
 cd app
 
-# Instala as dependências
+# Install dependencies
 npm install
 
-# Inicia o app
+# Start the app
 npm start
 
 ```
 
-**O Server Express inicia no link http://localhost:5000 e o app no link http://localhost:3000**
-
-# O visual do aplicativo:
-
-![app](https://raw.githubusercontent.com/fgl27/Ideafix_test/master/app/public/Screenshot_from_2021-08-05_15-08-35.png)
+**The Express Server starts at the link http://localhost:5000 and the app http://localhost:3000**
