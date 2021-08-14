@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import './index.css';
@@ -14,10 +14,19 @@ Note.propTypes = {
 
 export function Note(props) {
     const [note, setNote] = useState(props.notes);
+    const [inputNote, setInputNote] = useState(props.notes);
     const [show, setShow] = useState(false);
     const [edit, setEdit] = useState(false);
 
-    useEffect(() => {}, [show, edit]);
+    const changeEdit = () => {
+        setEdit(previewsEdit => !previewsEdit);
+    };
+
+    const cancelEdit = () => {
+        //reset input note state
+        setInputNote(note);
+        changeEdit();
+    };
 
     const DeleteNote = async id => {
         fetch('http://localhost:5000/' + id, {
@@ -39,10 +48,10 @@ export function Note(props) {
             .catch(error => console.error('DeleteNote Error:', error));
     };
 
-    const UpdateNote = async env => {
-        const {name, value} = env.target;
-        setNote({
-            ...note,
+    const UpdateNoteInputs = async event => {
+        const {name, value} = event.target;
+        setInputNote({
+            ...inputNote,
             [name]: value,
         });
     };
@@ -53,13 +62,14 @@ export function Note(props) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(note),
+            body: JSON.stringify(inputNote),
         })
             .then(res => res.json())
             .then(note => {
                 if (!note.msg) {
                     setNote(note);
-                    setEdit(!edit);
+                    setInputNote(note);
+                    changeEdit();
                 } else {
                     const msg = note.msg;
                     console.log(msg);
@@ -82,7 +92,7 @@ export function Note(props) {
                         key={note._id + 'edit_button'}
                         className="edit_button tooltip"
                         name={note._id}
-                        onClick={() => setEdit(!edit)}>
+                        onClick={() => changeEdit()}>
                         <FaRegEdit key={note._id + 'edit_icon'} />
                         <span className="tooltiptext">Edit</span>
                     </button>
@@ -105,14 +115,14 @@ export function Note(props) {
                             ? 'note_description note_description_show'
                             : 'note_description'
                     }
-                    onClick={() => setShow(!show)}>
+                    onClick={() => setShow(previewsShow => !previewsShow)}>
                     {note.description}
                 </div>
             </div>
         );
     };
 
-    const EditNote = () => {
+    const ShowInputs = () => {
         return (
             <div key={note._id + 'note'} className="note">
                 <div
@@ -124,8 +134,8 @@ export function Note(props) {
                         type="text"
                         placeholder="Título"
                         name="title"
-                        value={note.title}
-                        onChange={e => UpdateNote(e)}
+                        value={inputNote.title}
+                        onChange={event => UpdateNoteInputs(event)}
                     />
                     <button
                         key={note._id + 'edit_button'}
@@ -142,10 +152,10 @@ export function Note(props) {
                         key={note._id + 'back_button'}
                         className="delete_button tooltip"
                         name={note._id}
-                        onClick={() => setEdit(!edit)}>
+                        onClick={() => cancelEdit()}>
                         <IoMdBackspace
                             key={note._id + 'back_icon'}
-                            className="back-icon"
+                            className="cancel-icon"
                         />
                         <span className="tooltiptext">Cancel Edit</span>
                     </button>
@@ -156,12 +166,12 @@ export function Note(props) {
                     type="text"
                     placeholder="Descrição"
                     name="description"
-                    value={note.description}
-                    onChange={e => UpdateNote(e)}
+                    value={inputNote.description}
+                    onChange={event => UpdateNoteInputs(event)}
                 />
             </div>
         );
     };
 
-    return edit ? EditNote() : ShowNote();
+    return edit ? ShowInputs() : ShowNote();
 }

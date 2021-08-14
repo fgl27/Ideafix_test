@@ -8,7 +8,7 @@ Input.propTypes = {
 };
 
 export function Input(props) {
-    const [note, setNote] = useState({
+    const [NotePad, setNotePad] = useState({
         title: '',
         description: '',
     });
@@ -19,12 +19,12 @@ export function Input(props) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(note),
+            body: JSON.stringify(NotePad),
         })
             .then(res => res.json())
             .then(notes => {
                 if (Array.isArray(notes)) {
-                    setNote({
+                    setNotePad({
                         title: '',
                         description: '',
                     });
@@ -38,10 +38,10 @@ export function Input(props) {
             .catch(error => console.error('AddNote Error:', error));
     };
 
-    const Updatenote = async env => {
-        const {name, value} = env.target;
-        setNote({
-            ...note,
+    const UpdateNotepad = async event => {
+        const {name, value} = event.target;
+        setNotePad({
+            ...NotePad,
             [name]: value,
         });
     };
@@ -54,16 +54,16 @@ export function Input(props) {
                 type="text"
                 placeholder="Title"
                 name="title"
-                value={note.title}
-                onChange={e => Updatenote(e)}
+                value={NotePad.title}
+                onChange={e => UpdateNotepad(e)}
             />
             <textarea
                 className="input inputDescription"
                 type="text"
                 placeholder="Description"
                 name="description"
-                value={note.description}
-                onChange={e => Updatenote(e)}
+                value={NotePad.description}
+                onChange={e => UpdateNotepad(e)}
             />
             <button className="button" onClick={() => AddNote()}>
                 <div className="drop_shadow">Add note</div>
