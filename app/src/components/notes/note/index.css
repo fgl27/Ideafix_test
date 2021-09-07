@@ -21,21 +21,6 @@
     width: 100% !important;
 }
 
-.note_title {
-    font-weight: bold;
-    font-size: 110%;
-    display: inline-block;
-    width: 135px;
-    color: var(--secondary);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border-bottom: 1px solid var(--primary2);
-    text-shadow: 0.25px 0.25px 0 var(--textShadowcolor),
-        0.25px 0 0 var(--textShadowcolor), -0.25px 0 0 var(--textShadowcolor),
-        0 -0.25px 0 var(--textShadowcolor), 0 0.25px 0 var(--textShadowcolor);
-}
-
 .edit_button,
 .delete_button {
     transform: translate(15px, -15px);
@@ -71,6 +56,22 @@
     transform: translate(10px, -13px);
 }
 
+.note_title {
+    font-weight: bold;
+    font-size: 110%;
+    display: inline-block;
+    width: 135px;
+    color: var(--secondary);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid var(--primary2);
+    text-shadow: 0.25px 0.25px 0 var(--textShadowcolor),
+        0.25px 0 0 var(--textShadowcolor), -0.25px 0 0 var(--textShadowcolor),
+        0 -0.25px 0 var(--textShadowcolor), 0 0.25px 0 var(--textShadowcolor);
+    cursor: pointer;
+}
+
 .note_description {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -82,13 +83,19 @@
     cursor: pointer;
 }
 
-.note_description_show {
+.note_title_show,
+.note_description_show,
+.note_title:hover,
+.note_description:hover {
     white-space: pre-wrap;
     text-overflow: unset;
     overflow: visible;
     word-break: break-all;
     hyphens: auto;
     height: auto;
+}
+
+.note_description_show {
     min-height: 2em;
 }
 

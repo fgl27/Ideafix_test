@@ -85,7 +85,12 @@ export function Note(props) {
                 <div
                     key={note._id + 'title_container'}
                     className="note_title_container">
-                    <div key={note._id + 'title'} className="note_title">
+                    <div
+                        key={note._id + 'title'}
+                        className={
+                            show ? 'note_title note_title_show' : 'note_title'
+                        }
+                        onClick={() => setShow(previewsShow => !previewsShow)}>
                         {note.title}
                     </div>
                     <button
