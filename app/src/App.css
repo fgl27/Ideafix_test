@@ -54,6 +54,12 @@ header {
     color: var(--primary);
 }
 
+.text_shadow {
+    text-shadow: 1px 1px 0 var(--textShadowcolor),
+        1px 0 0 var(--textShadowcolor), -1px 0 0 var(--textShadowcolor),
+        0 -1px 0 var(--textShadowcolor), 0 1px 0 var(--textShadowcolor);
+}
+
 a:link,
 a:hover,
 a:visited,

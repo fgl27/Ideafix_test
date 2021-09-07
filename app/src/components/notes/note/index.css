@@ -31,6 +31,9 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     border-bottom: 1px solid var(--primary2);
+    text-shadow: 0.25px 0.25px 0 var(--textShadowcolor),
+        0.25px 0 0 var(--textShadowcolor), -0.25px 0 0 var(--textShadowcolor),
+        0 -0.25px 0 var(--textShadowcolor), 0 0.25px 0 var(--textShadowcolor);
 }
 
 .edit_button,
@@ -76,6 +79,7 @@
     line-height: 1em;
     white-space: nowrap;
     margin-top: 2px;
+    cursor: pointer;
 }
 
 .note_description_show {
@@ -85,6 +89,7 @@
     word-break: break-all;
     hyphens: auto;
     height: auto;
+    min-height: 2em;
 }
 
 .delete-icon {

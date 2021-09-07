@@ -48,7 +48,7 @@ export function Input(props) {
 
     return (
         <div className="input_container">
-            <h2 className="textCenter">Notepad</h2>
+            <h2 className="textCenter text_shadow">Notepad</h2>
             <input
                 className="input"
                 type="text"
@@ -65,7 +65,7 @@ export function Input(props) {
                 value={NotePad.description}
                 onChange={e => UpdateNotepad(e)}
             />
-            <button className="button" onClick={() => AddNote()}>
+            <button className="button text_shadow" onClick={() => AddNote()}>
                 <div className="drop_shadow">Add note</div>
             </button>
         </div>
