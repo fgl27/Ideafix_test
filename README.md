@@ -7,7 +7,7 @@ A project to demonstrate how to make a Notepad REST-API/App that allows to List,
 
 # The look of the app:
 
-[app](https://raw.githubusercontent.com/fgl27/Notepad_app/master/app/public/app.gif)
+[App.gif](https://raw.githubusercontent.com/fgl27/Notepad_app/master/app/public/app.gif)
 
 # Starting REST-API and APP
 
